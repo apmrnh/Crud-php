@@ -1,5 +1,7 @@
 <?php
 require_once 'db.php';
+require_once 'authenticate.php';
+require_once 'header.php';
 
 $id = $_GET['id'];
 
@@ -12,42 +14,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $dataNascimento = $_POST['dataNascimento'];
     $tipo_sanguineo = $_POST['tipo_sanguineo'];
 
-    $stmt = $pdo->prepare("UPDATE paciente SET nome = ?, data_nascimento = ?, tipo_sanguineo = ?, WHERE id = ?");
+    $stmt = $pdo->prepare("UPDATE paciente SET nome = ?, data_nascimento = ?, tipo_sanguineo = ? WHERE id = ?");
     $stmt->execute([$nome, $dataNascimento, $tipo_sanguineo, $id]);
 
-    header('Location: read-aluno.php?id=' . $id);
+    header('Location: read-paciente.php?id=' . $id);
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Aluno</title>
-    <link rel="stylesheet" href="../css/style.css">
-</head>
-<body>
-    <header>
-        <h1>Editar Aluno</h1>
-        <nav>
-            <ul>
-                <li><a href="../index.php">Home</a></li>
-                <li>Pacientes:
-                        <a href="/php/create-paciente.php">Adicionar</a> | 
-                        <a href="/php/index-paciente.php">Listar</a>
-                    </li>
-                    <li>Medicos:
-                        <a href="/php/create-medico.php">Adicionar</a> | 
-                        <a href="/php/index-medico.php">Listar</a>
-                    </li>
-                    <li>Consultas:
-                        <a href="/php/create-consulta.php">Adicionar</a> | 
-                        <a href="/php/index-consulta.php">Listar</a>
-                    </li>
-            </ul>
-        </nav>
-    </header>
     <main>
         <form method="POST">
             <label for="nome">Nome:</label>

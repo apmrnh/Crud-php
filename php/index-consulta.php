@@ -1,5 +1,7 @@
 <?php
 require_once 'db.php';
+require_once 'authenticate.php';
+require_once 'header.php';
 
 $stmt = $pdo->query("SELECT Consulta.*, medico.nome AS medico_nome, paciente.nome AS paciente_nome FROM Consulta
 JOIN medico ON Consulta.medico_id = medico.id
@@ -7,35 +9,6 @@ JOIN paciente ON Consulta.paciente_id = paciente.id");
 $consultas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Consultas</title>
-    <link rel="stylesheet" href="../css/style.css">
-</head>
-<body>
-    <header>
-        <h1>Lista de Consultas</h1>
-        <nav>
-            <ul>
-                <li><a href="../index.php">Home</a></li>
-                <li>Pacientes:
-                        <a href="/php/create-paciente.php">Adicionar</a> | 
-                        <a href="/php/index-paciente.php">Listar</a>
-                    </li>
-                    <li>Medicos:
-                        <a href="/php/create-medico.php">Adicionar</a> | 
-                        <a href="/php/index-medico.php">Listar</a>
-                    </li>
-                    <li>Consultas:
-                        <a href="/php/create-consulta.php">Adicionar</a> | 
-                        <a href="/php/index-consulta.php">Listar</a>
-                    </li>
-            </ul>
-        </nav>
-    </header>
     <main>
         <table>
             <thead>

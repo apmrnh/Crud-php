@@ -1,5 +1,7 @@
 <?php
 require_once 'db.php';
+require_once 'authenticate.php';
+require_once 'header.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nome = $_POST['nome'];
@@ -13,16 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adicionar Paciente</title>
-    <link rel="stylesheet" href="../css/style.css">
-</head>
-<body>
-    <header>
         <h1>Adicionar Paciente</h1>
     </header>
     <main>

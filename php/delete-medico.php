@@ -1,5 +1,6 @@
 <?php
 require_once 'db.php';
+require_once 'authenticate.php';
 
 $id = $_GET['id'];
 
